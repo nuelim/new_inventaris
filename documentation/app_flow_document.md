@@ -1,0 +1,37 @@
+# App Flow Document for new_inventaris
+
+## Onboarding and Sign-In/Sign-Up
+
+When a new user arrives at the application, they land on a clean and informative landing page that introduces the inventory management system. On this page, the user can see a brief overview of features and a clear call to action to sign up or sign in. To create an account, the user clicks on the sign-up button and is presented with a form requesting name, email address, and a secure password. After filling out the form, the user submits it and receives a confirmation email with a link to verify their account. Once verified, they are automatically signed in and taken to the main dashboard. For returning users, the sign-in page asks for email and password. If the credentials match, they are redirected to the same dashboard. In case a user forgets their password, they can click the “Forgot Password” link, enter their registered email, and receive a password reset link. Following that link takes them to a page where they can choose a new password. After resetting, the user can sign in again with the new password. Signing out is available at any time through the profile menu in the header. Clicking sign out ends the session and returns the user to the landing page.
+
+## Main Dashboard or Home Page
+
+Upon successful login, users see the main dashboard, which is designed to give a snapshot of inventory health and quick access to core features. The top of the screen shows a header with the application logo on the left and the user’s profile icon on the right. The profile icon expands to show account settings and sign-out options. Along the left side, a persistent navigation menu provides links to Items, Transactions, Alerts, Reports, Users, API Settings, and Documentation. In the center, key widgets display real-time stock summaries, recent inbound and outbound transactions, low-stock warnings, and a quick search bar for looking up items by SKU or name. Each widget can be clicked to dive deeper—clicking on recent transactions takes the user to the full Transactions page, and clicking on low-stock warnings takes them to the Alerts page.
+
+## Detailed Feature Flows and Page Transitions
+
+When users want to manage their inventory catalog, they click on the Items link in the sidebar. The Items page opens with a searchable, filterable table listing each item and its current stock level. From here, the user clicks an Add Item button, which opens a form where they enter the product name, SKU, description, category, supplier details, warehouse location, and any custom fields. Submitting the form creates the new item and returns the user to the table with the new entry visible. To edit an existing item, the user clicks on its row, which opens a detail view showing the item’s attributes and its stock distribution by warehouse. On this detail view, they can update any field or delete the item entirely.
+
+For stock movements, the user navigates to the Transactions page from the sidebar. There, they choose between inbound and outbound transactions. Selecting one type reveals a form where they pick an item from a dropdown, specify the warehouse, enter a quantity, and add notes. Once they submit, the stock levels update instantly in the database and the user is returned to the transactions list, which shows the new record at the top. Any changes immediately reflect on the item detail pages and the dashboard widgets.
+
+To configure low-stock alerts, the user goes to the Alerts section. This page lists all existing alert rules. Clicking Add Alert opens a form where they select an item or category, set a threshold number, and choose notification methods such as in-app, email, or SMS. After saving, the system monitors stock levels in real time and sends notifications when thresholds are breached. Clicking on any alert in the list takes the user to a history of triggered notifications.
+
+In the Reports section, the user picks predefined report types like inventory turnover or stock valuation. They set a date range and apply optional filters. Upon generating the report, the page displays charts and tables that can be exported as CSV or PDF. The Export button is prominent at the top of the report view.
+
+Administrators can manage user roles by clicking on Users in the sidebar. The Users page shows a list of individuals with assigned roles. Admins click a user to edit their details or change their role. To create or edit roles and their permissions, admins switch to the Roles tab and use a form that lists capabilities per module. After saving role changes, the system enforces them immediately, updating what each user can see in the navigation menu.
+
+Developers or integrators can find API details under API Settings in the sidebar. This page displays the user’s API key, endpoint documentation, sample requests, and webhook setup instructions. Users can regenerate keys from this page if needed.
+
+When users need guidance, they click Documentation, which opens a section with links to the user manual, developer guide, and onboarding tutorial. These documents open in the browser and provide step-by-step instructions and code examples.
+
+## Settings and Account Management
+
+Users access personal settings by clicking their profile icon in the header and selecting Account Settings. On this page, they can update their name, email, and password. Below the personal information section, they find notification preferences where they can toggle email or SMS alerts on or off. For organizations with billing enabled, a Subscription tab appears, showing the current plan, billing history, and a form to update payment methods. After making changes, users click Save to persist preferences. A breadcrumb at the top of the page allows them to return quickly to the dashboard or other sections.
+
+## Error States and Alternate Paths
+
+If a user attempts to submit a form with missing or invalid data, the application highlights the offending fields and displays inline error messages describing the issue. When network connectivity is lost during an action, a banner appears at the top of the page warning of offline mode and automatically retries the request when connectivity returns. If a user tries to access a restricted page without sufficient permissions, they see a friendly 403 page explaining they do not have access and a button to return to the dashboard. Nonexistent URLs show a custom 404 page with a brief message and a link back to the homepage. During long-running tasks such as bulk import, the interface shows a progress indicator and, in case of failure, provides a clear error log with instructions on how to fix format issues and retry.
+
+## Conclusion and Overall App Journey
+
+A new user signs up, verifies their email, and lands on the dashboard with real-time snapshots of their inventory. From there, they add items to the catalog, move stock with inbound and outbound transactions, and set up low-stock alerts. Administrators configure roles and permissions to control who sees what, while all users rely on the search and filtering tools to find items quickly. Reporting and export features help teams analyze performance and share insights. Developers use the API settings to integrate with other systems. As users update personal and subscription settings, the app adapts to their preferences. Throughout, clear error handling and documentation ensure that any unexpected issues are resolved smoothly, guiding users from sign-up all the way through everyday inventory management tasks.
